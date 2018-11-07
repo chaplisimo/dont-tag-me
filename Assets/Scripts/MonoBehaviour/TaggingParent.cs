@@ -28,18 +28,22 @@ public class TaggingParent : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision collision){
-		Debug.Log(gameObject.name + " hit "+collision.collider.gameObject.name);
-		GameObject other = collision.collider.gameObject;
-		if(!other.CompareTag(gameObject.tag)){
-			other.GetComponent<Rigidbody>().AddForce(tagForce * collision.contacts[0].normal, ForceMode.Impulse);
-			if(tagScript.IsTag()){
-				Debug.Log("TAGGED");
-				
-				
-				TagScript otherTag = other.GetComponentInParent<TagScript>();
-				if(otherTag != null){
-					otherTag.SetTag(true);
-					this.tagScript.SetTag(false);
+		foreach (ContactPoint contact in collision.contacts){
+			//Debug.Log(LayerMask.LayerToName(contact.thisCollider.gameObject.layer) + " hit " + contact.otherCollider.gameObject);
+			//If hand hit something
+			if(contact.thisCollider.gameObject.layer.Equals(LayerMask.NameToLayer("Attack"))){
+				Debug.Log(contact.thisCollider.gameObject.name + " ATTACK "+ contact.otherCollider.gameObject.name);
+
+				GameObject other = contact.otherCollider.gameObject;
+				other.GetComponent<Rigidbody>().AddForce(tagForce * contact.normal, ForceMode.Impulse);
+				if(tagScript.IsTag()){
+					Debug.Log("TAGGED");	
+					
+					TagScript otherTag = other.GetComponentInParent<TagScript>();
+					if(otherTag != null){
+						otherTag.SetTag(true);
+						this.tagScript.SetTag(false);
+					}
 				}
 			}
 		}

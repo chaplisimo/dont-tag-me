@@ -47,7 +47,6 @@ public class Tagging : MonoBehaviour {
 
 	public void Tag(){
 		if(cooldownControl <= 0f){
-			Debug.Log("Slapping");
 			handAnimator.SetTrigger("Slap");
 			cooldownControl = tagCooldown;
 		}

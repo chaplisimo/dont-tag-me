@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
 	[SerializeField]
 	KeyCode tagKey = KeyCode.F;
 	TaggingParent taggingScript;
+	//Tagging taggingScript;
 
 	bool isPlayerAlive = true;
 
