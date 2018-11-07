@@ -1,0 +1,9 @@
+Cada jugador tiene 100 bolas
+Un jugador al azar es el TAG
+El jugador TAG va dejando caer sus bolas a medida que pasa el tiempo
+Los otros jugadores pueden recoger sus bolas como propias
+El jugador TAG debe "tagguear" a los otros jugadores para quitarse el TAG
+El jugador taggueado es el nuevo TAG y pierde una pequeña parte de sus bolas como castigo
+Gana el jugador que mas bolas tiene al terminarse el tiempo
+
+https://www.bilibili.com/video/av32026724/?p=1
