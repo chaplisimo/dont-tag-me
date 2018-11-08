@@ -8,8 +8,8 @@ public class TagScript : MonoBehaviour {
 	bool _ImTag = false;
 
     void Start () {
-		_ImTag = false;
-		tagDisplay.SetActive(false);
+		//_ImTag = false;
+		tagDisplay.SetActive(_ImTag);
 	}
 
     public bool IsTag(){

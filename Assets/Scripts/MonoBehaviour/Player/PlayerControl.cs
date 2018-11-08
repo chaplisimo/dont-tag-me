@@ -13,7 +13,6 @@ public class PlayerControl : MonoBehaviour
 	[SerializeField]
 	KeyCode tagKey = KeyCode.F;
 	TaggingParent taggingScript;
-	//Tagging taggingScript;
 
 	bool isPlayerAlive = true;
 
@@ -22,7 +21,6 @@ public class PlayerControl : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		rigidbody = GetComponent<Rigidbody>();
-		//taggingScript = GetComponentInChildren<Tagging>();
 		taggingScript = GetComponent<TaggingParent>();
 	}
 	

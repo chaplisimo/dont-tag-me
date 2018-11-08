@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tagging : MonoBehaviour {
 	
-	TagScript tagScript;
+	/*TagScript tagScript;
 	Animator handAnimator;
 	Collider handCollider;
 
@@ -50,5 +50,5 @@ public class Tagging : MonoBehaviour {
 			handAnimator.SetTrigger("Slap");
 			cooldownControl = tagCooldown;
 		}
-	}
+	}*/
 }

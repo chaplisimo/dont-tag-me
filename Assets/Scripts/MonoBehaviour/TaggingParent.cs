@@ -5,8 +5,7 @@ using UnityEngine;
 public class TaggingParent : MonoBehaviour {
 	
 	TagScript tagScript;
-	Animator handAnimator;
-	Collider handCollider;
+	HandController handController;
 
 	[SerializeField]
 	float tagForce = 5;
@@ -17,8 +16,7 @@ public class TaggingParent : MonoBehaviour {
 
 	void Start(){
 		tagScript = GetComponent<TagScript>();
-		handAnimator = GetComponentInChildren<Animator>();
-		handCollider = GetComponentInChildren<BoxCollider>();
+		handController = GetComponentInChildren<HandController>();
 	}
 
 	void Update () {
@@ -30,30 +28,33 @@ public class TaggingParent : MonoBehaviour {
 	void OnCollisionEnter(Collision collision){
 		foreach (ContactPoint contact in collision.contacts){
 			//Debug.Log(LayerMask.LayerToName(contact.thisCollider.gameObject.layer) + " hit " + contact.otherCollider.gameObject);
+
 			//If hand hit something
 			if(contact.thisCollider.gameObject.layer.Equals(LayerMask.NameToLayer("Attack"))){
-				Debug.Log(contact.thisCollider.gameObject.name + " ATTACK "+ contact.otherCollider.gameObject.name);
 
 				GameObject other = contact.otherCollider.gameObject;
-				other.GetComponent<Rigidbody>().AddForce(tagForce * contact.normal, ForceMode.Impulse);
+				//Debug.Log(other);
+				other.GetComponent<Rigidbody>().AddForce(tagForce * -contact.normal, ForceMode.VelocityChange);
 				if(tagScript.IsTag()){
-					Debug.Log("TAGGED");	
-					
 					TagScript otherTag = other.GetComponentInParent<TagScript>();
 					if(otherTag != null){
+						Debug.Log("TAGGED");
 						otherTag.SetTag(true);
 						this.tagScript.SetTag(false);
 					}
 				}
+				//Avoid Colliding many times
+				handController.ToggleHandCollider(0);
+				break;
 			}
 		}
 	}
 
 	public void Tag(){
 		if(cooldownControl <= 0f){
-			Debug.Log("Slapping");
-			handAnimator.SetTrigger("Slap");
+			handController.Slap();
 			cooldownControl = tagCooldown;
 		}
 	}
+
 }
