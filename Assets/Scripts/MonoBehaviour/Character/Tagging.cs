@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
+//[Obsolete("Use TagginParent to detect collision on Player's Rigidbody")]
 public class Tagging : MonoBehaviour {
 	
 	/*TagScript tagScript;
