@@ -54,3 +54,6 @@ MonoBehaviour:
   amountDroppedWhenTagged: 10
   amountDroppedOnTime: 10
   dropEverySeconds: 2
+  forceMode: 1
+  ballDropPrefab: {fileID: 1974708626156260, guid: b61dda2f2d4ddbb4693f4e8274f4b104,
+    type: 2}

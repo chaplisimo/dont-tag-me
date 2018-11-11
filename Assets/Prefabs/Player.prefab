@@ -225,7 +225,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1536230781276580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4286410472456338}
@@ -661,6 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61eb5dd407e3524489a82cc916b63af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ImTag: 1
   tagDisplay: {fileID: 1331937524442170}
   OnPlayerTagged:
     m_PersistentCalls:
@@ -694,7 +695,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  _ImTag: 1
 --- !u!114 &114192125341101672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -709,6 +709,8 @@ MonoBehaviour:
   amountDroppedWhenTagged: 10
   amountDroppedOnTime: 10
   dropEverySeconds: 2
+  ballDropPrefab: {fileID: 1974708626156260, guid: b61dda2f2d4ddbb4693f4e8274f4b104,
+    type: 2}
 --- !u!114 &114378179787466648
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,6 +9,18 @@ public class ScoreDrop : MonoBehaviour {
 	[Range(0,30)]
 	public int dropEverySeconds = 2;
 
+	public ForceMode forceMode;
+
+	public GameObject ballDropPrefab;
+
+	BallDrop ballDrop;
+	CharacterInfo characterInfo;
+
+	private void Start() {
+		characterInfo = GetComponentInParent<CharacterInfo>();
+		ballDrop = ballDropPrefab.GetComponent<BallDrop>();
+	}
+
 	public void OnTagEvent(bool tagged){
 		if(tagged){
 			DropScoreWhenTagged();
@@ -18,13 +30,27 @@ public class ScoreDrop : MonoBehaviour {
 	}
 
 	void DropScoreWhenTagged(){
-		Debug.Log("U DROP "+amountDroppedWhenTagged+" COINS");
+		for(int i=0;i<amountDroppedWhenTagged;i++){
+			GameObject obj = GameObject.Instantiate(ballDropPrefab,transform.position,transform.rotation);
+			//obj.GetComponent<Rigidbody>().AddExplosionForce(100f,obj.transform.position,2f);
+			obj.GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * 5f, forceMode);
+		}
+
+		characterInfo.playerScore -= ballDrop.ballScore * amountDroppedWhenTagged;
+		Debug.Log("U DROP "+amountDroppedWhenTagged+" COINS. CURRENT SCORE: "+ characterInfo.playerScore);
+
 		StartCoroutine(DropScoreOnTime());
 	}
 
 	IEnumerator DropScoreOnTime(){
 		while(true){
 			yield return new WaitForSeconds(dropEverySeconds);
+
+			for(int i=0;i<amountDroppedOnTime;i++){
+				GameObject obj = GameObject.Instantiate(ballDropPrefab,transform.position,transform.rotation);
+				obj.GetComponent<Rigidbody>().AddForce(Random.onUnitSphere.normalized * 5f, forceMode);
+			}
+			characterInfo.playerScore -= ballDrop.ballScore * amountDroppedOnTime;
 			Debug.Log("DOT MADE U LOSE "+amountDroppedOnTime+" COINS");
 		}
 	}
